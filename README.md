@@ -75,6 +75,6 @@ make build-volume && make build-up
 ```
 And now open your browser and serch for you ***Domain*** and see the website
 
-
 ## 👨‍💻 Autor
-- [Alexsandro Moreira](https://github.com/mouracv)
+- [GitHub](https://github.com/mouracv)
+- [Linkedin](https://www.linkedin.com/in/alexsandro-moreira-2b438a347/)
