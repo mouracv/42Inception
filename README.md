@@ -26,7 +26,7 @@ The infrastructure will look like this:
 <br>
 
 ## 🚀 Installation  
-To start the project, we need Docker. If you don’t have it, visit this [repository with a script to install Docker](https://github.com/andrexandre/script).  
+To start the project, we need Docker. If you don’t have it, you can install it using this [script to install Docker](https://github.com/andrexandre/script).  
 
 ### Clone this repository:  
 ```bash
