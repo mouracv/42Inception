@@ -1,0 +1,81 @@
+# version: "3" # version of docker compose
+
+# Se nao quisermos usar uma imagem ja feita temos que criar a imagem com o --build no docker compose
+
+services: # List the conatiner we want to create
+  
+  mariadb: # Will be used to set the container name if container_name is not set
+    image: mariadb # Name of the image to use and tag
+    container_name: mariadb # Specifies the name of the container as we want
+    build: # To create a image if dont exist
+      context: requirements/mariadb # Path to the folder with the confuguration for the image
+      dockerfile: Dockerfile # Name of the config file
+    env_file:
+      - path: ./.env
+    networks:
+      - Inception
+    volumes:
+      - mariadb-volume:/var/lib/mysql/
+    restart: always
+
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    build:
+      context: requirements/wordpress
+      dockerfile: Dockerfile
+    env_file:
+      - path: ./.env
+    networks:
+      - Inception
+    volumes:
+      - wp-volume:/var/www/html/
+    depends_on:
+      mariadb:
+        condition: service_started
+    restart: always
+  
+  nginx:
+    image: nginx
+    container_name: nginx
+    build:
+      context: requirements/nginx
+      dockerfile: Dockerfile
+    networks:
+      - Inception
+    ports:
+      - 443:443
+    volumes:
+      - wp-volume:/var/www/html/
+    depends_on:
+      wordpress:
+        condition: service_started
+    restart: always
+
+
+
+volumes:
+  mariadb-volume:
+    name: mariadb
+    driver: local # Armazena os dados no sistema de arquivos do host
+    driver_opts: # Permite configurar as opcoes do driver do volume
+      type: none # Define o filesystem a ser usado
+      device: '/home/aleperei/data/dataBase' # Especifica o caminho do dispositivo ou diretório no host que será montado no volume
+      o: bind # Permissions and configuration of the mounting
+  
+  wp-volume:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      device: '/home/aleperei/data/wordPress'
+      o: bind
+
+
+
+# Create a new network Inception
+networks:
+  Inception:
+    name: Inception
+    driver: bridge
+
