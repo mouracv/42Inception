@@ -1,19 +1,20 @@
 # Inception
-
-Inception is a rank 5 project in the 42 courses where the main objective consists of having you set up a small infrastructure composed of different services under specific rules, using Docker.  
+Inception is a rank 5 project in the 42 common core where the main objective consists of having you set up a small infrastructure composed of different services under specific rules, using Docker.
 
 ### What is Docker ?  
-Docker is an open-source platform that allows you to create, deploy, and manage applications in containers. [Containers](https://www.docker.com/resources/what-container/) are isolated environments that contain everything a software application needs to run, including code, libraries, and dependencies, ensuring it works consistently across any system. [Docker beginner guide here](https://medium.com/@JeffyJeff/the-beginners-guide-to-docker-fa4c4d3181e7)
+Docker is an open-source platform that allows you to create, deploy, and manage applications in containers. [Containers](https://www.docker.com/resources/what-container/) are isolated environments that contain everything a software application needs to run, including code, libraries, and dependencies, ensuring it works consistently across any system.
 
+### Links:
+- [Docker beginner’s guide](https://medium.com/@JeffyJeff/the-beginners-guide-to-docker-fa4c4d3181e7)
+- [Docker commands cheatsheet](docker-commands.md)
 
 ### What services do we use?
+When creating the [image](https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/) for each service, each of them must be built either from the penultimate stable version of Debian or Alpine.
 
-When creating the [image](https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/) for each service, each of them must be based on an old stable version of Debian or Alpine.  
-
-The services we have created are:  
-- A **MariaDB** database  
-- **WordPress + PHP-FPM**  
-- An **Nginx** server  
+The services we have created are:
+- A **MariaDB** database
+- **WordPress + PHP-FPM**
+- An **Nginx** server
 
 The infrastructure will look like this:
 
@@ -25,14 +26,12 @@ The infrastructure will look like this:
 <br>
 
 ## 🚀 Installation  
-To start the project, we need Docker. If you don’t have it, visit this [repository with a script to install Docker](https://github.com/andrexandre/script).  
-
-If you already have it, just follow the next instructions.  
+To start the project, we need Docker. If you don’t have it, you can install it using this [script to install Docker](https://github.com/andrexandre/script).  
 
 ### Clone this repository:  
 ```bash
-git clone https://github.com/mouracv/Inception
-cd Inception
+git clone https://github.com/mouracv/42Inception
+cd 42Inception
 ```
 
 ## ⚙️ Configuração
@@ -43,7 +42,7 @@ Create the **.env** file:
 touch srcs/.env
 ```
 
-Then, add the following variables inside the **.env** file:
+Add the following variables inside the **.env** file:
 ```bash
 DB_NAME=my_database           # Name of the MariaDB database
 DB_USER=my_user               # Database username
@@ -61,20 +60,22 @@ WP_SIMPLE_EMAIL=user@example.com  # Regular WordPress user email
 DOMAIN=mywebsite.com          # Website domain (e.g., "example.com")
 ```
 
-And the final step to configure is to change the hostname so that you can access the website using the Domain you choose. To do that, we need to modify a file with sudo permissions.  
+The final step to configure is to modify the /etc/hosts file so that you can access the website using a custom domain. To do that, we need sudo permissions.  
 ```bash
 sudo nano /etc/hosts
-# Then, add this: 127.0.0.1 [TAB] The Domain you choose
+# Then, add this: 127.0.0.1 [TAB] aleperei.42.fr
 ```
 
-## 🛠 Usage  
-
-Now we are ready to run the project. To launch the containers, just run this command in the root of the repository:
+## 🛠 Usage
+We are ready to run the project. To launch the containers, just run this command in the root of the repository:
 ```bash
 make build-volume && make build-up
 ```
-And now open your browser and serch for you ***Domain*** and see the website
+And now just open your browser on the custom domain configured and see the website running
+```bash
+open https://aleperei.42.fr
+```
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 - [GitHub](https://github.com/mouracv)
 - [Linkedin](https://www.linkedin.com/in/alexsandro-moreira-2b438a347/)
