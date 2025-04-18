@@ -34,7 +34,7 @@ git clone https://github.com/mouracv/42Inception
 cd 42Inception
 ```
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 Before launching the containers, we need to create a **.env** file inside the **srcs** folder, where we store all the necessary configurations for the containers.  
 
 Create the **.env** file:  
