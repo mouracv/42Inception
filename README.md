@@ -77,5 +77,4 @@ open https://aleperei.42.fr
 ```
 
 ## 👨‍💻 Author
-- [GitHub](https://github.com/mouracv)
 - [Linkedin](https://www.linkedin.com/in/alexsandro-moreira-2b438a347/)
